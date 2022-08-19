@@ -16,14 +16,15 @@ import { defaultGatsbyFieldAliases } from "../config/default-gatsby-field-aliase
  */
 export async function createSchemaCustomization(
   config: ISourcingConfig,
-  cache: GatsbyCache,
-  cacheKey: CacheKey
+  cacheKey?: CacheKey,
+  cache?: GatsbyCache
 ) {
   const context = createSchemaCustomizationContext(config)
   const typeDefs = buildTypeDefinitions(context)
 
-  // store remote type definition in gatsby cache
-  await cache.set(cacheKey, typeDefs)
+  // store remote type definition (typeDefs) in gatsby cache
+  if (cacheKey && cache && typeof cache.set === "function")
+    await cache.set(cacheKey, typeDefs)
 
   context.gatsbyApi.actions.createTypes(typeDefs)
 }
