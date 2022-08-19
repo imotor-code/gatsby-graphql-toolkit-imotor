@@ -14,7 +14,7 @@ export function promptUpgradeIfRequired(
 
 export function upgradeToV03() {
   console.error(
-    `${chalk.white.bgRed(` gatsby-graphql-source-toolkit `)} ` +
+    `${chalk.white.bgRed(` gatsby-graphql-source-toolkit-imotor `)} ` +
       `Starting with version 0.3 the toolkit uses a new format to define "remoteIdFields". ` +
       `Please upgrade using the link below\n\n` +
       `https://github.com/vladar/gatsby-graphql-toolkit/blob/master/CHANGELOG.md#v030`

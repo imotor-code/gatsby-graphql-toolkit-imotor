@@ -787,7 +787,7 @@ Check out the `src/config/pagination-adapters` folder for examples.
 > your custom adapters:
 
 ```js
-const { PaginationAdapters } = require("gatsby-graphql-source-toolkit")
+const { PaginationAdapters } = require("gatsby-graphql-source-toolkit-imotor")
 const MyCustomAdapter = {
   // Your implementation
 }

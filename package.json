@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-graphql-source-toolkit",
+  "name": "gatsby-graphql-source-toolkit-imotor",
   "version": "2.0.2",
   "description": "A toolkit designed to simplify data sourcing from a remote GraphQL API into Gatsby.",
-  "author": "Vladimir Razuvaev <vladimir@gatsbyjs.com>",
+  "author": "Vladimir Razuvaev <vladimir@gatsbyjs.com>, and i-Motor Team",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
