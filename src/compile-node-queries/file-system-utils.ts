@@ -40,13 +40,16 @@ export async function readOrGenerateDefaultFragments(
  * @param fileName the name of javascript file to write the fragments to. can also include a path
  * @param fragmentsDoc the compiled gatsby fragments
  */
-export async function writeGatsbyFragments(fileName: string, fragmentsDoc: DocumentNode) {
-  await fs.ensureFile(fileName);
+export async function writeGatsbyFragments(
+  fileName: string,
+  fragmentsDoc: DocumentNode
+) {
+  await fs.ensureFile(fileName)
 
-  const renderFragment = (def) => `
+  const renderFragment = def => `
 export const ${def.name.value} = graphql\`
   ${print(def)}
-\``;
+\``
 
   const text = `/* eslint-disable */
 /**
@@ -54,9 +57,9 @@ export const ${def.name.value} = graphql\`
  */
 import { graphql } from "gatsby"
 ${fragmentsDoc.definitions.map(renderFragment).join(`\n\n`)}
-`;
+`
 
-  await fs.writeFile(fileName, text);
+  await fs.writeFile(fileName, text)
 }
 
 export async function writeCompiledQueries(

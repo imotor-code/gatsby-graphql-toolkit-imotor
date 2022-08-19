@@ -181,3 +181,37 @@ export interface IGatsbyFieldTransform {
     args: IGatsbyFieldTransformArgs
   ) => ObjectTypeComposerFieldConfigDefinition<any, any>
 }
+
+export interface GatsbyCache {
+  name: string
+  directory: string
+  /**
+   * Retrieve cached value
+   * @param key Cache key
+   * @returns Promise resolving to cached value
+   * @example
+   * const value = await cache.get(`unique-key`)
+   */
+  get(key: string): Promise<any>
+
+  /**
+   * Cache value
+   * @param key Cache key
+   * @param value Value to be cached
+   * @returns Promise resolving to cached value
+   * @example
+   * await cache.set(`unique-key`, value)
+   */
+  set(key: string, value: any): Promise<any>
+
+  /**
+   * Deletes cached value
+   * @param {string} key Cache key
+   * @returns {Promise<void>} Promise resolving once key is deleted from cache
+   * @example
+   * await cache.del(`unique-key`)
+   */
+  del(key: string): Promise<void>
+}
+
+export type CacheKey = string

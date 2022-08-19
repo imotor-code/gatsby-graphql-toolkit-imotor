@@ -1,4 +1,9 @@
-import { ISchemaCustomizationContext, ISourcingConfig } from "../types"
+import {
+  ISchemaCustomizationContext,
+  ISourcingConfig,
+  GatsbyCache,
+  CacheKey,
+} from "../types"
 import { buildTypeDefinitions } from "./build-types"
 import { buildSourcingPlan } from "./analyze/build-sourcing-plan"
 import { createNodeIdTransform } from "../config/node-id-transform"
@@ -9,9 +14,17 @@ import { defaultGatsbyFieldAliases } from "../config/default-gatsby-field-aliase
  * Uses sourcing config to define Gatsby types explicitly
  * (using Gatsby schema customization API).
  */
-export async function createSchemaCustomization(config: ISourcingConfig) {
+export async function createSchemaCustomization(
+  config: ISourcingConfig,
+  cache: GatsbyCache,
+  cacheKey: CacheKey
+) {
   const context = createSchemaCustomizationContext(config)
   const typeDefs = buildTypeDefinitions(context)
+
+  // store remote type definition in gatsby cache
+  await cache.set(cacheKey, typeDefs)
+
   context.gatsbyApi.actions.createTypes(typeDefs)
 }
 
